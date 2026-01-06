@@ -11,6 +11,7 @@ public record PersonResponseDTO (
     String cui,
     String firstname,
     String lastname,
+    String fullname,
     Honorific honorific,
     Gender gender,
     String phoneNumber,

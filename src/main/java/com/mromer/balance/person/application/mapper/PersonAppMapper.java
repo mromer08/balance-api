@@ -26,6 +26,7 @@ public class PersonAppMapper {
                 person.getCui(),
                 person.getFirstname(),
                 person.getLastname(),
+                person.getFullName(),
                 person.getHonorific(),
                 person.getGender(),
                 person.getPhoneNumber(),

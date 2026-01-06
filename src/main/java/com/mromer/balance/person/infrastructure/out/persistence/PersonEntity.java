@@ -15,7 +15,9 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PersonEntity {
+    @Id
     private UUID id;
+    
     private String cui;
     private String firstName;
     private String lastName;

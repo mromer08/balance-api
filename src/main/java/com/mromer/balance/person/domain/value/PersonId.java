@@ -2,11 +2,13 @@ package com.mromer.balance.person.domain.value;
 
 import java.util.UUID;
 
+import com.mromer.balance.common.domain.exception.DomainException;
+
 public record PersonId(UUID value) {
 
     public PersonId {
         if (value == null) {
-            throw new IllegalArgumentException("PersonId value cannot be null");
+            throw new DomainException("PersonId value cannot be null");
         }
     }
     
