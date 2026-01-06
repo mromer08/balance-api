@@ -1,12 +1,15 @@
 package com.mromer.balance.person.application.port.out.persistence;
 
-import com.mromer.balance.common.application.dto.PagedResponseDTO;
-import com.mromer.balance.person.application.dto.PersonResponseDTO;
+import java.util.Optional;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.mromer.balance.person.application.port.in.query.GetAllPersonsQuery;
 import com.mromer.balance.person.domain.Person;
 import com.mromer.balance.person.domain.value.PersonId;
 
 public interface FindPersons {
-    Person findPersonById(PersonId id);
-    PagedResponseDTO<PersonResponseDTO> findAllPersons(GetAllPersonsQuery query);
+    Optional<Person> findPersonById(PersonId id);
+    Page<Person> findAllPersons(GetAllPersonsQuery query, Pageable pageable);
 }

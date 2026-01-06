@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.mromer.balance.person.application.dto.PersonResponseDTO;
+import com.mromer.balance.person.application.exception.PersonNotFoundException;
 import com.mromer.balance.person.application.mapper.PersonAppMapper;
 import com.mromer.balance.person.application.port.in.query.GetPersonById;
 import com.mromer.balance.person.application.port.out.persistence.FindPersons;
@@ -20,7 +21,8 @@ public class GetPersonByIdImpl implements GetPersonById {
 
     @Override
     public PersonResponseDTO getPersonById(PersonId id) {
-        Person person = findPersons.findPersonById(id);
+        Person person = findPersons.findPersonById(id).orElseThrow(
+                () -> PersonNotFoundException.forId(id));
         return PersonAppMapper.fromDomainToResponseDTO(person);
     }
 
