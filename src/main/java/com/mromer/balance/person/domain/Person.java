@@ -2,6 +2,7 @@ package com.mromer.balance.person.domain;
 
 import java.time.LocalDate;
 
+import com.mromer.balance.contribuyente.domain.value.NIT;
 import com.mromer.balance.person.domain.value.PersonId;
 
 import lombok.*;
@@ -12,6 +13,8 @@ import lombok.*;
 public class Person {
 
     private PersonId id;
+    @NonNull
+    private NIT nit;
     private String cui;
     @NonNull
     private String firstname;
@@ -24,6 +27,7 @@ public class Person {
     private LocalDate birthDate;
 
     public static Person register(
+            NIT nit,
             String cui,
             String firstname,
             String lastname,
@@ -34,6 +38,7 @@ public class Person {
             LocalDate birthDate) {
         return new Person(
                 PersonId.generate(),
+                nit,
                 cui,
                 firstname.trim().toUpperCase(),
                 lastname.trim().toUpperCase(),
@@ -46,6 +51,7 @@ public class Person {
 
     public static Person rehydrate(
             PersonId id,
+            NIT nit,
             String cui,
             String firstname,
             String lastname,
@@ -56,6 +62,7 @@ public class Person {
             LocalDate birthDate) {
         return new Person(
                 id,
+                nit,
                 cui,
                 firstname,
                 lastname,
@@ -106,5 +113,9 @@ public class Person {
         if (email != null && !email.isBlank()) {
             this.email = email;
         }
+    }
+
+    public void updateNIT(NIT nit) {
+        this.nit = nit;
     }
 }

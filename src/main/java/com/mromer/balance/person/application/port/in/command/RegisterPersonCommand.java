@@ -26,6 +26,7 @@ public record RegisterPersonCommand(
         @Email
         String email,
 
+        @NotNull(message = "Birth date is required")
         @Past(message = "Birth date must be in the past")
         LocalDate birthDate
 ) {}
