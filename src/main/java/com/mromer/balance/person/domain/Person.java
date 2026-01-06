@@ -77,18 +77,34 @@ public class Person {
             Honorific honorific,
             Gender gender,
             LocalDate birthDate) {
-        this.cui = cui;
-        this.firstname = firstname.trim().toUpperCase();
-        this.lastname = lastname.trim().toUpperCase();
-        this.honorific = honorific;
-        this.gender = gender;
-        this.birthDate = birthDate;
+        if (cui != null && !cui.isBlank()) {
+            this.cui = cui;
+        }
+        if (firstname != null && !firstname.isBlank()) {
+            this.firstname = firstname.trim().toUpperCase();
+        }
+        if (lastname != null && !lastname.isBlank()) {
+            this.lastname = lastname.trim().toUpperCase();
+        }
+        if (honorific != null) {
+            this.honorific = honorific;
+        }
+        if (gender != null) {
+            this.gender = gender;
+        }
+        if (birthDate != null) {
+            this.birthDate = birthDate;
+        }
     }
 
     public void updateContactInformation(
             String phoneNumber,
             String email) {
-        this.phoneNumber = phoneNumber;
-        this.email = email;
+        if (phoneNumber != null && !phoneNumber.isBlank()) {
+            this.phoneNumber = phoneNumber;
+        }
+        if (email != null && !email.isBlank()) {
+            this.email = email;
+        }
     }
 }

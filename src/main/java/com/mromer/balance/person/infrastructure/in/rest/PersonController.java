@@ -44,5 +44,21 @@ public class PersonController {
     public ResponseEntity<PersonResponseDTO> registerPerson(@Valid @RequestBody RegisterPersonCommand command) {
         return ResponseEntity.ok(registerPerson.registerPerson(command));
     }
+
+    @PatchMapping("/{id}/update-contact-info")
+    public ResponseEntity<PersonResponseDTO> updatePersonContactInfo(
+            @PathVariable UUID id,
+            @Valid @RequestBody UpdatePersonContactInfoCommand command) {
+        UpdatePersonContactInfo updatePersonContactInfo = (UpdatePersonContactInfo) getPersonById;
+        return ResponseEntity.ok(updatePersonContactInfo.updatePersonContactInfo(PersonId.of(id), command));
+    }
+
+    @PatchMapping("/{id}/update-main-info")
+    public ResponseEntity<PersonResponseDTO> updatePersonMainInfo(
+            @PathVariable UUID id,
+            @Valid @RequestBody UpdatePersonMainInfoCommand command) {
+        UpdatePersonMainInfo updatePersonMainInfo = (UpdatePersonMainInfo) getPersonById;
+        return ResponseEntity.ok(updatePersonMainInfo.updatePersonMainInfo(PersonId.of(id), command));
+    }
     
 }
