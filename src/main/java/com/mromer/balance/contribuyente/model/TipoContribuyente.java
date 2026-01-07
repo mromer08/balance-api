@@ -1,4 +1,4 @@
-package com.mromer.balance.contribuyente.domain;
+package com.mromer.balance.contribuyente.model;
 
 public enum TipoContribuyente {
     PEQUENO_CONTRIBUYENTE,
