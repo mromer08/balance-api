@@ -1,4 +1,4 @@
-package com.mromer.balance.common.infrastructure.config;
+package com.mromer.balance.common.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

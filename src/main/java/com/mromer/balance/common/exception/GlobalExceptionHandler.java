@@ -1,4 +1,4 @@
-package com.mromer.balance.common.infrastructure.config.in.rest;
+package com.mromer.balance.common.exception;
 
 import java.time.Instant;
 import java.util.HashMap;
@@ -17,11 +17,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-
-import com.mromer.balance.common.application.exception.BusinessException;
-import com.mromer.balance.common.application.exception.DuplicateEntityException;
-import com.mromer.balance.common.application.exception.EntityNotFoundException;
-import com.mromer.balance.common.domain.exception.DomainException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
@@ -49,15 +44,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         ProblemDetail pd = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, e.getMessage());
         pd.setTitle("Business Exception");
         pd.setProperty("error_category", "Business Rule");
-        pd.setProperty("timestamp", Instant.now());
-        return pd;
-    }
-
-    @ExceptionHandler(DomainException.class)
-    ProblemDetail handleDomainException(DomainException e) {
-        ProblemDetail pd = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, e.getMessage());
-        pd.setTitle("Domain Exception");
-        pd.setProperty("error_category", "Domain Rule");
         pd.setProperty("timestamp", Instant.now());
         return pd;
     }

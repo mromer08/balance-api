@@ -1,4 +1,4 @@
-package com.mromer.balance.common.application.dto;
+package com.mromer.balance.common.dto;
 
 import java.util.List;
 

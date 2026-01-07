@@ -1,4 +1,4 @@
-package com.mromer.balance.common.application.exception;
+package com.mromer.balance.common.exception;
 
 public class BusinessException extends RuntimeException {
     public BusinessException(String message) {

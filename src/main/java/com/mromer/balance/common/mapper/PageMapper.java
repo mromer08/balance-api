@@ -1,8 +1,8 @@
-package com.mromer.balance.common.application.mapper;
+package com.mromer.balance.common.mapper;
 
 import org.springframework.data.domain.Page;
 
-import com.mromer.balance.common.application.dto.PagedResponseDTO;
+import com.mromer.balance.common.dto.PagedResponseDTO;
 
 import lombok.experimental.UtilityClass;
 
