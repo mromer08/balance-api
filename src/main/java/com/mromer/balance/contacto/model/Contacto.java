@@ -15,6 +15,7 @@ public class Contacto {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
+    private String telefono;
     private String nombres;
     private String apellidos;
     @Enumerated(EnumType.STRING)
@@ -23,7 +24,6 @@ public class Contacto {
     @Enumerated(EnumType.STRING)
     private Genero genero;
 
-    private String telefono;
     private String telefonoSecundario;
     private String email;
 }
