@@ -1,14 +1,14 @@
 CREATE TABLE contribuyentes (
     id UUID PRIMARY KEY,
     nit TEXT NOT NULL UNIQUE,
-    razon_social TEXT NOT NULL,
+    nombre TEXT NOT NULL,
     tipo TEXT NOT NULL,
     regimen TEXT NOT NULL,
     tipo_empresa TEXT,
-    estado TEXT NOT NULL,
-    renta_bruta TEXT NOT NULL,
-    representante_id UUID NOT NULL,
-    fecha_apertura DATE,
-    CONSTRAINT contribuyentes_representante_fk
-        FOREIGN KEY (representante_id) REFERENCES personas(id) ON DELETE SET NULL
+    estado TEXT NOT NULL DEFAULT 'ACTIVO',
+    actividad_economica TEXT NOT NULL,
+    contacto_id UUID NOT NULL,
+    fecha_nacimiento DATE,
+    CONSTRAINT contribuyentes_contacto_fk
+        FOREIGN KEY (contacto_id) REFERENCES contactos(id) ON DELETE SET NULL
 );
