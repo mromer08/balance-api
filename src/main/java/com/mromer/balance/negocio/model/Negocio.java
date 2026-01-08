@@ -10,6 +10,7 @@ import lombok.*;
 @Entity
 @Table(name = "negocios")
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Negocio {
