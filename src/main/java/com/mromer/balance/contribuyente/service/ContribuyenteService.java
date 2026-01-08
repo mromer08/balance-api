@@ -5,7 +5,7 @@ import java.util.UUID;
 import org.springframework.data.domain.Pageable;
 
 import com.mromer.balance.common.dto.PagedResponseDTO;
-import com.mromer.balance.contribuyente.dto.request.ActualizarContactoContribuyenteRequestDTO;
+import com.mromer.balance.contribuyente.dto.request.CambiarContactoContribuyenteRequestDTO;
 import com.mromer.balance.contribuyente.dto.request.ObtenerContribuyentesRequestDTO;
 import com.mromer.balance.contribuyente.dto.request.RegistrarContribuyenteGeneralRequestDTO;
 import com.mromer.balance.contribuyente.dto.request.RegistrarPequenoContribuyenteRequestDTO;
@@ -16,6 +16,6 @@ public interface ContribuyenteService {
     PagedResponseDTO<ContribuyenteResponseDTO> obtenerContribuyentes(ObtenerContribuyentesRequestDTO requestDTO, Pageable pageable);
     ContribuyenteResponseDTO registrarPequenoContribuyente(RegistrarPequenoContribuyenteRequestDTO requestDTO);
     ContribuyenteResponseDTO registrarContribuyenteGeneral(RegistrarContribuyenteGeneralRequestDTO requestDTO);
-    ContribuyenteResponseDTO actualizarContacto(UUID id, ActualizarContactoContribuyenteRequestDTO requestDTO);
+    ContribuyenteResponseDTO cambiarContacto(UUID id, CambiarContactoContribuyenteRequestDTO requestDTO);
     boolean eliminarContribuyente(UUID id);
 }

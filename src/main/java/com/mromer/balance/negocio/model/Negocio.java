@@ -14,7 +14,10 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Negocio {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+    
     private String razonSocial;
 
     @Enumerated(EnumType.STRING)

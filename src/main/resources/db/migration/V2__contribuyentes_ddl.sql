@@ -6,7 +6,6 @@ CREATE TABLE contribuyentes (
     regimen TEXT NOT NULL,
     tipo_empresa TEXT,
     estado TEXT NOT NULL DEFAULT 'ACTIVO',
-    actividad_economica TEXT NOT NULL,
     contacto_id UUID NOT NULL,
     fecha_nacimiento DATE,
     CONSTRAINT contribuyentes_contacto_fk

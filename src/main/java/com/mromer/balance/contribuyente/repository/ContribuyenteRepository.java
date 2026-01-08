@@ -14,8 +14,6 @@ public interface ContribuyenteRepository extends
     JpaSpecificationExecutor<Contribuyente> {
     boolean existsByNit(String nit);
     boolean existsByNitAndIdNot(String nit, UUID id);
-    boolean existsByRazonSocial(String razonSocial);
-    boolean existsByRazonSocialAndIdNot(String razonSocial, UUID id);
     Optional<Contribuyente> findByNit(String nit);
     Optional<Contribuyente> findByNitAndTipo(String nit, TipoContribuyente tipo);
 }

@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.mromer.balance.common.dto.PagedResponseDTO;
 import com.mromer.balance.common.mapper.PageMapper;
+import com.mromer.balance.common.text.TextNormalizer;
 import com.mromer.balance.contacto.exception.ContactoNotFoundException;
 import com.mromer.balance.contacto.model.Contacto;
 import com.mromer.balance.contacto.repository.ContactoRepository;
@@ -86,9 +87,14 @@ public class ContribuyenteServiceImpl implements ContribuyenteService {
             throw DuplicateContribuyenteException.forNit(requestDTO.nit());
         }
 
+        String nombre = TextNormalizer.normalizeUppercase(requestDTO.nombre());
+        if (requestDTO.tipoEmpresa() == TipoEmpresa.PERSONAL) {
+            nombre = contacto.getFullName();
+        }
+
         Contribuyente contribuyente = Contribuyente.builder()
             .nit(requestDTO.nit())
-            .nombre(requestDTO.nombre())
+            .nombre(nombre)
             .tipo(TipoContribuyente.CONTRIBUYENTE_GENERAL)
             .regimen(requestDTO.regimen())
             .tipoEmpresa(requestDTO.tipoEmpresa())
@@ -103,7 +109,7 @@ public class ContribuyenteServiceImpl implements ContribuyenteService {
 
 
     @Override
-    public ContribuyenteResponseDTO actualizarContacto(UUID id, ActualizarContactoContribuyenteRequestDTO requestDTO) {
+    public ContribuyenteResponseDTO cambiarContacto(UUID id, CambiarContactoContribuyenteRequestDTO requestDTO) {
         Contribuyente contribuyente = contribuyenteRepository.findById(id)
             .orElseThrow(
                 () -> ContribuyenteNotFoundException.forId(id)

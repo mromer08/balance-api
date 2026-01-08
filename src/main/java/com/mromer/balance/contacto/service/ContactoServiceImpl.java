@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mromer.balance.common.text.TextNormalizer;
 import com.mromer.balance.contacto.dto.request.ActualizarContactoRequestDTO;
 import com.mromer.balance.contacto.dto.request.ObtenerContactosRequestDTO;
 import com.mromer.balance.contacto.dto.request.RegistrarContactoRequestDTO;
@@ -50,9 +51,11 @@ public class ContactoServiceImpl implements ContactoService{
             throw DuplicateContactoException.forTelefono(requestDTO.telefono());
         }
 
-        if (contactoRepository.existsByEmail(requestDTO.email())) {
-            throw DuplicateContactoException.forEmail(requestDTO.email());
+        String email = TextNormalizer.normalizeEmailLowercase(requestDTO.email());
+        if (email != null && contactoRepository.existsByEmail(email)) {
+            throw DuplicateContactoException.forEmail(email);
         }
+
         Contacto contacto = contactoMapper.toEntity(requestDTO);
         return contactoMapper.toResponseDTO(contactoRepository.save(contacto));
     }
@@ -66,8 +69,10 @@ public class ContactoServiceImpl implements ContactoService{
             throw DuplicateContactoException.forTelefono(requestDTO.telefono());
         }
 
-        if (contactoRepository.existsByEmailAndIdNot(requestDTO.email(), id)) {
-            throw DuplicateContactoException.forEmail(requestDTO.email());
+        String email = TextNormalizer.normalizeEmailLowercase(requestDTO.email());
+
+        if (contactoRepository.existsByEmailAndIdNot(email, id)) {
+            throw DuplicateContactoException.forEmail(email);
         }
 
         contactoMapper.updateEntityFromDTO(requestDTO, contacto);

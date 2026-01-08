@@ -27,7 +27,7 @@ public class ContactoController {
 
     @GetMapping
     public ResponseEntity<PagedResponseDTO<ContactoResponseDTO>> obtenerContactos(
-        @RequestBody(required = false) ObtenerContactosRequestDTO requestDTO,
+        ObtenerContactosRequestDTO requestDTO,
         @PageableDefault Pageable pageable
     ) {
         Page<ContactoResponseDTO> contactos = contactoService.obtenerContactos(requestDTO, pageable);

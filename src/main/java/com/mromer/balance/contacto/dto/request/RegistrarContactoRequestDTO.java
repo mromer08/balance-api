@@ -20,6 +20,10 @@ public record RegistrarContactoRequestDTO(
 
     Honorifico honorifico,
     Genero genero,
+
+    @Pattern(regexp = "\\d{8}", message = "El numero de telefono debe contener exactamente 8 dígitos numéricos")
     String telefonoSecundario,
+
+    @Email(message = "El correo electrónico no es válido")
     String email
 ) {}
