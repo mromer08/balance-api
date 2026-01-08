@@ -3,7 +3,7 @@ package com.mromer.balance.contribuyente.model;
 import java.time.LocalDate;
 import java.util.UUID;
 
-import com.mromer.balance.persona.model.Persona;
+import com.mromer.balance.contacto.model.Contacto;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,6 +11,7 @@ import lombok.*;
 @Entity
 @Table(name = "contribuyentes")
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Contribuyente {
@@ -18,7 +19,7 @@ public class Contribuyente {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String nit;
-    private String razonSocial;
+    private String nombre;
 
     @Enumerated(EnumType.STRING)
     private TipoContribuyente tipo;
@@ -31,13 +32,10 @@ public class Contribuyente {
 
     @Enumerated(EnumType.STRING)
     private EstadoContribuyente estado;
-    
-    @Enumerated(EnumType.STRING)
-    private RentaBruta rentaBruta;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "representante_id", nullable = false)
-    private Persona representante;
+    @JoinColumn(name = "contacto_id", nullable = false)
+    private Contacto contacto;
     
-    private LocalDate fechaApertura;
+    private LocalDate fechaNacimiento;
 }
