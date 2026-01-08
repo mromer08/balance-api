@@ -26,4 +26,8 @@ public class Contacto {
 
     private String telefonoSecundario;
     private String email;
+
+    public String getFullName() {
+        return nombres + " " + apellidos;
+    }
 }
